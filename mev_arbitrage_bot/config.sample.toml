@@ -1,0 +1,88 @@
+# MEV Arbitrage Bot Sample Configuration
+# Rename this file to config.toml and update with your settings
+
+# Ethereum network configuration
+[ethereum]
+rpc_url = "https://eth-mainnet.alchemyapi.io/v2/your-api-key"
+# Optional WebSocket URL (will be derived from RPC URL if not provided)
+# ws_url = "wss://eth-mainnet.ws.alchemyapi.io/v2/your-api-key"
+# Whether to use WebSocket connections (defaults to true)
+use_websocket = true
+# Polling interval in milliseconds for HTTP fallback (defaults to 2000)
+polling_interval_ms = 2000
+chain_id = 1  # Mainnet
+# Private key should be set via environment variable ETHEREUM_PRIVATE_KEY
+wallet_address = "0xYourWalletAddress"
+max_block_lookback = 10
+ws_timeout_seconds = 30
+
+# MEV-Share configuration
+[mev_share]
+api_url = "https://mev-share.flashbots.net"
+# API key should be set via environment variable MEV_SHARE_API_KEY
+enabled = true
+max_validator_tip = 2  # 2 gwei
+
+# Flash loan configuration
+[flash_loan]
+aave_lending_pool = "0x7d2768dE32b0b80b7a3454c06BdAc94A69DDc7A9"  # Aave V2 lending pool
+max_borrow_amount = 100.0  # 100 ETH
+
+# Token configurations
+[[flash_loan.tokens]]
+symbol = "WETH"
+address = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+decimals = 18
+
+[[flash_loan.tokens]]
+symbol = "USDC"
+address = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+decimals = 6
+
+[[flash_loan.tokens]]
+symbol = "DAI"
+address = "0x6B175474E89094C44Da98b954EedeAC495271d0F"
+decimals = 18
+
+# DEX configurations
+[dex.uniswap]
+enabled = true
+factory_address = "0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f"  # Uniswap V2 factory
+router_address = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"  # Uniswap V2 router
+pools = []  # Will be populated automatically
+
+[dex.sushiswap]
+enabled = true
+factory_address = "0xC0AEe478e3658e2610c5F7A4A2E1777cE9e4f2Ac"  # Sushiswap factory
+router_address = "0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F"  # Sushiswap router
+pools = []  # Will be populated automatically
+
+[dex.curve]
+enabled = true
+factory_address = "0x0959158b6040D32d04c301A72CBFD6b39E21c9AE"  # Curve factory
+router_address = "0x8e764bE4288B842791989DB5b8ec067279829809"  # Curve router
+pools = []  # Will be populated automatically
+
+# Arbitrage configuration
+[arbitrage]
+min_profit_threshold = 50.0  # $50
+max_hops = 3
+slippage_tolerance = 0.5  # 0.5%
+evaluation_timeout_ms = 500
+max_concurrent_evaluations = 5
+
+# Gas price configuration
+[gas]
+strategy = "eip1559"  # Options: "fixed", "eip1559", "dynamic"
+max_gas_price = 100  # 100 gwei
+base_fee_multiplier = 1.2
+priority_fee = 2  # 2 gwei
+gas_limit = 500000
+
+# Security configuration
+[security]
+transaction_timeout = 60  # 60 seconds
+min_price_sources = 2
+max_price_deviation = 1.0  # 1%
+simulate_transactions = true
+max_execution_slippage = 1.0  # 1%

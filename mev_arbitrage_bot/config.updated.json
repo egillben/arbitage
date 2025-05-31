@@ -1,0 +1,121 @@
+{
+  "ethereum": {
+    "rpc_url": "http://localhost:8545",
+    "chain_id": 31337,
+    "wallet_address": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+    "max_block_lookback": 10,
+    "ws_timeout_seconds": 30,
+    "use_websocket": false,
+    "polling_interval_ms": 1000
+  },
+  "mev_share": {
+    "api_url": "https://mev-share.flashbots.net",
+    "enabled": false,
+    "max_validator_tip": 2
+  },
+  "flash_loan": {
+    "aave_lending_pool": "0x0000000000000000000000000000000000000002",
+    "max_borrow_amount": 100.0,
+    "tokens": [
+      {
+        "symbol": "WETH",
+        "address": "0x0000000000000000000000000000000000000006",
+        "decimals": 18
+      },
+      {
+        "symbol": "USDC",
+        "address": "0x0000000000000000000000000000000000000007",
+        "decimals": 6
+      },
+      {
+        "symbol": "DAI",
+        "address": "0x0000000000000000000000000000000000000008",
+        "decimals": 18
+      }
+    ]
+  },
+  "dex": {
+    "uniswap": {
+      "enabled": true,
+      "factory_address": "0x0000000000000000000000000000000000000000",
+      "router_address": "0x0000000000000000000000000000000000000003",
+      "pools": [
+        {
+          "name": "WETH-USDC",
+          "address": "0x0000000000000000000000000000000000000000",
+          "token0": "0x0000000000000000000000000000000000000006",
+          "token1": "0x0000000000000000000000000000000000000007"
+        },
+        {
+          "name": "WETH-DAI",
+          "address": "0x0000000000000000000000000000000000000000",
+          "token0": "0x0000000000000000000000000000000000000006",
+          "token1": "0x0000000000000000000000000000000000000008"
+        },
+        {
+          "name": "USDC-DAI",
+          "address": "0x0000000000000000000000000000000000000000",
+          "token0": "0x0000000000000000000000000000000000000007",
+          "token1": "0x0000000000000000000000000000000000000008"
+        }
+      ]
+    },
+    "sushiswap": {
+      "enabled": true,
+      "factory_address": "0x0000000000000000000000000000000000000000",
+      "router_address": "0x0000000000000000000000000000000000000004",
+      "pools": [
+        {
+          "name": "WETH-USDC",
+          "address": "0x0000000000000000000000000000000000000000",
+          "token0": "0x0000000000000000000000000000000000000006",
+          "token1": "0x0000000000000000000000000000000000000007"
+        },
+        {
+          "name": "WETH-DAI",
+          "address": "0x0000000000000000000000000000000000000000",
+          "token0": "0x0000000000000000000000000000000000000006",
+          "token1": "0x0000000000000000000000000000000000000008"
+        },
+        {
+          "name": "USDC-DAI",
+          "address": "0x0000000000000000000000000000000000000000",
+          "token0": "0x0000000000000000000000000000000000000007",
+          "token1": "0x0000000000000000000000000000000000000008"
+        }
+      ]
+    },
+    "curve": {
+      "enabled": false,
+      "factory_address": "0x0000000000000000000000000000000000000000",
+      "router_address": "0x0000000000000000000000000000000000000005",
+      "pools": []
+    }
+  },
+  "arbitrage": {
+    "min_profit_threshold": 0.01,
+    "max_hops": 3,
+    "slippage_tolerance": 0.5,
+    "evaluation_timeout_ms": 500,
+    "max_concurrent_evaluations": 5,
+    "contract": {
+      "contract_address": "0x0000000000000000000000000000000000000001",
+      "deploy_if_missing": false,
+      "deployment_gas_limit": 5000000
+    }
+  },
+  "gas": {
+    "strategy": "fixed",
+    "max_gas_price": 10,
+    "base_fee_multiplier": 1.0,
+    "priority_fee": 1,
+    "gas_limit": 500000
+  },
+  "security": {
+    "transaction_timeout": 60,
+    "min_price_sources": 1,
+    "max_price_deviation": 5.0,
+    "simulate_transactions": true,
+    "max_execution_slippage": 2.0
+  }
+}

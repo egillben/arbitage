@@ -1,0 +1,16 @@
+{
+  "name": "arbitage",
+  "version": "1.0.0",
+  "main": "hardhat.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "ethers": "^5.7.2",
+    "hardhat": "^2.24.1"
+  }
+}

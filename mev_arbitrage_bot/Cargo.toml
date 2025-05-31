@@ -1,0 +1,51 @@
+[package]
+name = "mev_arbitrage_bot"
+version = "0.1.0"
+edition = "2021"
+authors = ["MEV Arbitrage Bot Team"]
+description = "A MEV arbitrage bot using flash loans"
+
+[dependencies]
+# Ethereum interaction
+ethers = { version = "2.0", features = ["ws", "rustls", "abigen", "legacy", "eip712", "ethers-solc", "optimism"] }
+
+# MEV-Share integration is implemented directly using reqwest
+
+# Async runtime
+tokio = { version = "1.28", features = ["full"] }
+
+# Serialization/Deserialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# HTTP client
+reqwest = { version = "0.11", features = ["json"] }
+reqwest-eventsource = "0.4"
+
+# Logging
+log = "0.4"
+env_logger = "0.10"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Environment variables
+dotenv = "0.15"
+
+# Utilities
+hex = "0.4"
+futures = "0.3"
+async-trait = "0.1"
+chrono = "0.4"
+
+# Cryptography
+rand = "0.8"
+sha3 = "0.10"
+
+# Configuration
+config = "0.13"
+
+[dev-dependencies]
+mockall = "0.11"
+tokio-test = "0.4"
